@@ -4,12 +4,12 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class PlayerControl implements KeyListener{
-	private GameControl ctrl;
+	private GameControl gameControl;
 	
 	
 	
-	public PlayerControl(GameControl ctrl) {
-		this.ctrl = ctrl;
+	public PlayerControl(GameControl gameControl) {
+		this.gameControl = gameControl;
 	}
 
 	@Override
@@ -20,8 +20,19 @@ public class PlayerControl implements KeyListener{
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		int press = e.getKeyCode();
-		System.out.println(press);
+		int temp = e.getKeyCode();
+		if(temp == 37){
+			gameControl.move(-1,0);
+		}
+		else if(temp == 39){
+			gameControl.move(1,0);
+		}
+		else if(temp == 40){
+			gameControl.keyDown(0,1);
+		}
+		else if(temp == 38){
+			gameControl.rotate();
+		}
 	}
 
 	

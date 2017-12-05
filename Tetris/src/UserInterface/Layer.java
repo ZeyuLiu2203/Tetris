@@ -5,10 +5,12 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
-public class Layer {
+import DTO.GameDTO;
+
+public abstract class Layer {
 	// distance from top left corner to panel
-	private int x;
-	private int y;
+	protected int x;
+	protected int y;
 	//size of panel
 	private int width;
 	private int height;
@@ -16,6 +18,12 @@ public class Layer {
 	private final Image img = new ImageIcon("Graphics/Window/window.PNG").getImage();
 	private final int imgW = img.getWidth(null);
 	private final int imgH = img.getHeight(null);
+	
+	protected GameDTO gameDTO = null;
+	
+	public void setGameDTO(GameDTO gameDTO){
+		this.gameDTO = gameDTO;
+	}
 	
 	public Layer(int x, int y, int width, int height){
 		this.x = x;
@@ -35,6 +43,8 @@ public class Layer {
 		g.drawImage(img, x+SIZE, y+height - SIZE, x+width - SIZE, y+height, SIZE,imgH - SIZE, imgW  - SIZE,imgH, null);
 		g.drawImage(img, x+width - SIZE, y+height - SIZE, x+width , y+height, imgW - SIZE,imgH - SIZE, imgW,imgH , null);
 	}
+	
+	public abstract void paint(Graphics g);
 		
 		
 		
