@@ -1,16 +1,18 @@
 package Service;
 
 import java.awt.Point;
+import java.util.Random;
 
 import DTO.GameDTO;
 import Entity.GameAct;
 
 public class GameService {
+	private Random random = new Random();
 	
 	private GameDTO gameDTO;
 	public GameService(GameDTO gameDTO){
 		this.gameDTO = gameDTO;
-		GameAct gameAct = new GameAct();
+		GameAct gameAct = new GameAct(random.nextInt(6));
 		this.gameDTO.setGameAct(gameAct);
 	}
 	public void move(int moveX, int moveY) {
@@ -46,6 +48,6 @@ public class GameService {
 			//new Act
 			
 		}
-		this.gameDTO.getGameAct().init(0);
+		this.gameDTO.getGameAct().init(new Random().nextInt(6));
 	}
 }
